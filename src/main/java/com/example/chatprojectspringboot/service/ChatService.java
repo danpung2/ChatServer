@@ -15,7 +15,7 @@ public class ChatService {
     private final ChatRoomRepository chatRoomRepository;
     //채팅방 불러오기
     public List<ChatRoom> findAllRoom() {
-        return chatRoomRepository.findAll();
+        return chatRoomRepository.findAllByOrderByRoomIdDesc();
     }
 
     //채팅방 하나 불러오기

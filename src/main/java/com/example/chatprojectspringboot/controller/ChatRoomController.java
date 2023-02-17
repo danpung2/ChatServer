@@ -27,7 +27,7 @@ public class ChatRoomController {
         return ResponseEntity.ok(chatService.createRoom(roomName));
     }
     // 채팅방 입장 화면
-    @GetMapping("/room/enter/{roomId}")
+    @GetMapping("/room/enter")
     public ResponseEntity roomDetail(@RequestParam String roomId) {
         return ResponseEntity.ok(roomId);
     }

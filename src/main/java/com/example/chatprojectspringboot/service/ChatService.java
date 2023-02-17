@@ -19,7 +19,7 @@ public class ChatService {
     }
 
     //채팅방 하나 불러오기
-    public ChatRoom findById(int roomId) {
+    public ChatRoom getChatRoomByRoomId(int roomId) {
         return chatRoomRepository.findChatRoomByRoomId(roomId).get();
     }
 

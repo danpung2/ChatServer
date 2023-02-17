@@ -28,9 +28,8 @@ public class ChatRoomController {
     }
     // 채팅방 입장 화면
     @GetMapping("/room/enter/{roomId}")
-    public String roomDetail(Model model, @PathVariable String roomId) {
-        model.addAttribute("roomId", roomId);
-        return "/chat/roomdetail";
+    public ResponseEntity roomDetail(@RequestParam String roomId) {
+        return ResponseEntity.ok(roomId);
     }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")

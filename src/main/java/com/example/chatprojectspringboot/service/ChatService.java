@@ -1,5 +1,6 @@
 package com.example.chatprojectspringboot.service;
 
+import com.example.chatprojectspringboot.dto.EnterChatRoomDTO;
 import com.example.chatprojectspringboot.repository.ChatRoomRepository;
 import com.example.chatprojectspringboot.entity.ChatRoom;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,14 @@ public class ChatService {
                 .build();
 
         return chatRoomRepository.save(chatRoom);
+    }
+
+    public EnterChatRoomDTO enterRoom(int roomId){
+        // TODO: findUserByRoomId -> 이 채팅방에 대한 유저 정보 유무 확인
+
+        return EnterChatRoomDTO.builder()
+        .roomId(roomId)
+        .sender(null)
+        .build();
     }
 }

@@ -28,13 +28,13 @@ public class ChatRoomController {
     }
     // 채팅방 입장 화면
     @GetMapping("/room/enter")
-    public ResponseEntity roomDetail(@RequestParam String roomId) {
-        return ResponseEntity.ok(roomId);
+    public ResponseEntity roomDetail(@RequestParam int roomId) {
+        return ResponseEntity.ok(chatService.enterRoom(roomId));
     }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")
     @ResponseBody
     public ResponseEntity roomInfo(@PathVariable Integer roomId) {
-        return ResponseEntity.ok(chatService.findById(roomId));
+        return ResponseEntity.ok(chatService.getChatRoomByRoomId(roomId));
     }
 }

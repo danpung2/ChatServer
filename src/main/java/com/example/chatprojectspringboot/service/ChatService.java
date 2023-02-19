@@ -1,44 +1,62 @@
 package com.example.chatprojectspringboot.service;
 
-import com.example.chatprojectspringboot.dto.EnterChatRoomDTO;
-import com.example.chatprojectspringboot.repository.ChatRoomRepository;
-import com.example.chatprojectspringboot.entity.ChatRoom;
+import com.example.chatprojectspringboot.dto.EnterRoomDTO;
+import com.example.chatprojectspringboot.entity.User;
+import com.example.chatprojectspringboot.repository.RoomRepository;
+import com.example.chatprojectspringboot.entity.Room;
+import com.example.chatprojectspringboot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ChatService {
-    private final ChatRoomRepository chatRoomRepository;
+    private final RoomRepository roomRepository;
+    private final UserRepository userRepository;
+
     //채팅방 불러오기
-    public List<ChatRoom> findAllRoom() {
-        return chatRoomRepository.findAllByOrderByRoomIdDesc();
+    public List<Room> findAllRoom() {
+        return roomRepository.findAllByOrderByRoomIdDesc();
     }
 
     //채팅방 하나 불러오기
-    public ChatRoom getChatRoomByRoomId(int roomId) {
-        return chatRoomRepository.findChatRoomByRoomId(roomId).get();
+    public Room getChatRoomByRoomId(int roomId) {
+        return roomRepository.findRoomByRoomId(roomId).get();
     }
 
     //채팅방 생성
-    public ChatRoom createRoom(String name) {
-        ChatRoom chatRoom = ChatRoom.builder()
+    public Room createRoom(String name) {
+        Room room = Room.builder()
                 .roomName(name)
                 .build();
 
-        return chatRoomRepository.save(chatRoom);
+        return roomRepository.save(room);
     }
 
-    public EnterChatRoomDTO enterRoom(int roomId){
+    public EnterRoomDTO enterRoom(int roomId, int userId){
         // TODO: findUserByRoomId -> 이 채팅방에 대한 유저 정보 유무 확인
+//        if(roomRepository.findRoomByRoomIdAndUser(roomId, userId).isPresent()){
+//
+//        } else {
+//
+//        }
 
-        return EnterChatRoomDTO.builder()
+        User dummy = User.builder()
+                .userId(99)
+                .nickname("tester")
+                .email("tester@gmail.com")
+                .password("qwerty12345")
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        return EnterRoomDTO.builder()
         .roomId(roomId)
-        .sender(null)
+        .user(dummy)
         .build();
     }
 }

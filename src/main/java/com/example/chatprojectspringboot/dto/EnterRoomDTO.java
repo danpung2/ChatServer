@@ -1,5 +1,6 @@
 package com.example.chatprojectspringboot.dto;
 
+import com.example.chatprojectspringboot.entity.User;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EnterChatRoomDTO {
+public class EnterRoomDTO {
     @NotNull
     private int roomId;
-//    @NotNull
-//    private int userId;
-    private String sender;
+    private User user;
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/chat")
-public class ChatRoomController {
+public class RoomController {
     private final ChatService chatService;
     // 채팅 리스트 화면
 //    @GetMapping("/room")
@@ -28,8 +28,8 @@ public class ChatRoomController {
     }
     // 채팅방 입장 화면
     @GetMapping("/room/enter")
-    public ResponseEntity roomDetail(@RequestParam int roomId) {
-        return ResponseEntity.ok(chatService.enterRoom(roomId));
+    public ResponseEntity roomDetail(@RequestParam Integer roomId, @RequestParam Integer userId) {
+        return ResponseEntity.ok(chatService.enterRoom(roomId, userId));
     }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")

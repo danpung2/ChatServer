@@ -10,7 +10,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Entity
@@ -32,6 +31,9 @@ public class User {
     @Column(name="password")
     private String password;
 
+    @Column(name="refresh_token")
+    private String refreshToken;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="room_Id")
@@ -41,4 +43,9 @@ public class User {
     @Column(name="created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
 }

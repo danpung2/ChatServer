@@ -3,7 +3,6 @@ package com.example.chatprojectspringboot.controller;
 import com.example.chatprojectspringboot.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

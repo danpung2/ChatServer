@@ -1,6 +1,6 @@
 package com.example.chatprojectspringboot.service;
 
-import com.example.chatprojectspringboot.dto.EnterRoomDTO;
+import com.example.chatprojectspringboot.dto.chat.EnterRoomDTO;
 import com.example.chatprojectspringboot.entity.User;
 import com.example.chatprojectspringboot.repository.RoomRepository;
 import com.example.chatprojectspringboot.entity.Room;

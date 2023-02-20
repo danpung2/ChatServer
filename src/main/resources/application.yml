@@ -23,3 +23,23 @@ spring:
     jackson:
         serialization:
             fail-on-empty-beans: false
+#     jwt:
+#         access-secret: ChatProjectSpringBootAccessSecret
+#         access-header: Authorization_Access
+#         access-prefix: Access
+#         access-token-validity-in-seconds: 3600
+#         refresh-secret: ChatProjectSpringBootRefreshSecret
+#         refresh-header: Authorization_Refresh
+#         refresh-prefix: Refresh
+#         refresh-token-validity-in-seconds: 15 * 24 * 3600
+jwt:
+    access-secret: ChatProjectSpringBootAccessSecret
+    access-header: Authorization_Access
+    access-prefix: Access
+    access-token-validity-in-seconds: 3600
+    refresh-secret: ChatProjectSpringBootRefreshSecret
+    refresh-header: Authorization_Refresh
+    refresh-prefix: Refresh
+    refresh-token-validity-in-seconds: 1296000 # 15 * 24 * 3600
+
+

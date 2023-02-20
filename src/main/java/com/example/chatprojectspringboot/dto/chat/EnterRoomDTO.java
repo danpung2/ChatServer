@@ -1,4 +1,4 @@
-package com.example.chatprojectspringboot.dto;
+package com.example.chatprojectspringboot.dto.chat;
 
 import com.example.chatprojectspringboot.entity.User;
 import com.sun.istack.NotNull;

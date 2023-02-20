@@ -2,6 +2,7 @@ package com.example.chatprojectspringboot.controller;
 
 import com.example.chatprojectspringboot.common.security.jwt.JwtService;
 import com.example.chatprojectspringboot.common.security.jwt.JwtToken;
+import com.example.chatprojectspringboot.dto.user.JoinDTO;
 import com.example.chatprojectspringboot.dto.user.LoginDTO;
 import com.example.chatprojectspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,11 @@ public class UserController {
 //
 //    }
 
+    @PostMapping()
+    public ResponseEntity<?> join(@RequestBody @Validated JoinDTO joinDTO){
+        return ResponseEntity.ok(userService.join(joinDTO));
+    }
+
     @PostMapping("/login/success")
     public ResponseEntity<?> loginSuccess(HttpServletRequest request, HttpServletResponse response){
         int userId = (int) request.getAttribute("userId");
@@ -42,7 +48,7 @@ public class UserController {
 
         response.addHeader(ACCESS_HEADER, ACCESS_PREFIX+ jwtToken.getAccessToken());
 
-        return ResponseEntity.ok(userService.getUserById(userId).setPassword(""));
+        return ResponseEntity.ok(userService.login(userId, jwtToken.getRefreshToken()));
     }
     @PostMapping("/login/fail")
     public ResponseEntity<?> loginFail() {

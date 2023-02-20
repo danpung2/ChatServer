@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login/success");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/api/user/login/success");
         request.setAttribute("userId", principalDetails.getUser().getUserId());
 
         dispatcher.forward(request, response);
@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login/fail");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/api/user/login/fail");
         dispatcher.forward(request, response);
     }
 }

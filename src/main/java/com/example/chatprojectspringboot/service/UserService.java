@@ -1,5 +1,6 @@
 package com.example.chatprojectspringboot.service;
 
+import com.example.chatprojectspringboot.dto.user.JoinDTO;
 import com.example.chatprojectspringboot.entity.User;
 import com.example.chatprojectspringboot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public User join(JoinDTO joinDTO){
+        User user = User.builder()
+                .nickname(joinDTO.getNickname())
+                .email(joinDTO.getEmail())
+                .password(joinDTO.getPassword())
+                .build();
+
+        return userRepository.save(user);
+    }
+
+    public User login(int userId, String refreshToken){
+        return userRepository.save(getUserById(userId).setRefreshToken(refreshToken)).setPassword("");
+    }
 
     public User getUserById(int userId){
         return userRepository.findById(userId).get();

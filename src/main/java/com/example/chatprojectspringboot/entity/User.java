@@ -44,8 +44,23 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    public User setNickname(String nickname){
+        this.nickname = nickname;
+        return this;
+    }
+
+    public User setEmail(String email){
+        this.email = email;
+        return this;
+    }
+
     public User setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public User setRefreshToken(String refreshToken){
+        this.refreshToken = refreshToken;
         return this;
     }
 }

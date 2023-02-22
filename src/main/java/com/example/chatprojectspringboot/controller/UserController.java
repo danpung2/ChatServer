@@ -3,7 +3,6 @@ package com.example.chatprojectspringboot.controller;
 import com.example.chatprojectspringboot.common.security.jwt.JwtService;
 import com.example.chatprojectspringboot.common.security.jwt.JwtToken;
 import com.example.chatprojectspringboot.dto.user.JoinDTO;
-import com.example.chatprojectspringboot.dto.user.LoginDTO;
 import com.example.chatprojectspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,7 +36,7 @@ public class UserController {
 //
 //    }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<?> join(@RequestBody @Validated JoinDTO joinDTO){
         return ResponseEntity.ok(userService.join(joinDTO));
     }

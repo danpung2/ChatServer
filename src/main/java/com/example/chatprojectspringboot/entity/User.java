@@ -22,10 +22,10 @@ public class User {
     @Column(name="user_id")
     private int userId;
 
-    @Column(name="nickname")
+    @Column(name="nickname", unique = true)
     private String nickname;
 
-    @Column(name="email")
+    @Column(name="email", unique = true)
     private String email;
 
     @Column(name="password")
@@ -34,10 +34,10 @@ public class User {
     @Column(name="refresh_token")
     private String refreshToken;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="room_Id")
-    private Room room;
+//    @JsonBackReference
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="room_Id")
+//    private Room room;
 
     @JsonFormat(pattern="yyyy.MM.dd/HH:mm/E")
     @Column(name="created_at")

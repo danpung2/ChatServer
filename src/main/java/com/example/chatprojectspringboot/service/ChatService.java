@@ -39,24 +39,22 @@ public class ChatService {
     }
 
     public EnterRoomDTO enterRoom(int roomId, int userId){
-        // TODO: findUserByRoomId -> 이 채팅방에 대한 유저 정보 유무 확인
-//        if(roomRepository.findRoomByRoomIdAndUser(roomId, userId).isPresent()){
-//
-//        } else {
-//
-//        }
-
-        User dummy = User.builder()
-                .userId(99)
-                .nickname("tester")
-                .email("tester@gmail.com")
-                .password("qwerty12345")
-                .createdAt(LocalDateTime.now())
+        return EnterRoomDTO.builder()
+                .roomId(roomId)
+                .user(userRepository.findUserByUserId(userId).get())
                 .build();
 
-        return EnterRoomDTO.builder()
-        .roomId(roomId)
-        .user(dummy)
-        .build();
+//        User dummy = User.builder()
+//                .userId(99)
+//                .nickname("tester")
+//                .email("tester@gmail.com")
+//                .password("qwerty12345")
+//                .createdAt(LocalDateTime.now())
+//                .build();
+//
+//        return EnterRoomDTO.builder()
+//        .roomId(roomId)
+//        .user(dummy)
+//        .build();
     }
 }

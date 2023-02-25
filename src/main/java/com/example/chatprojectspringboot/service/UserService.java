@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public User login(int userId, String refreshToken){
-        return userRepository.save(getUserById(userId).setRefreshToken(refreshToken)).setPassword("");
+        return userRepository.save(getUserById(userId).setRefreshToken(refreshToken)).setPassword("").setRefreshToken("");
     }
 
     public User getUserById(int userId){

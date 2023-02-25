@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,12 +28,6 @@ public class UserController {
 
     @Value("${jwt.access-header}")
     private String ACCESS_HEADER;
-
-//    @PostMapping("/login")
-//    public ResponseEntity login(@RequestBody @Validated LoginDTO loginDTO){
-//
-//
-//    }
 
     @PostMapping
     public ResponseEntity<?> join(@RequestBody @Validated JoinDTO joinDTO){

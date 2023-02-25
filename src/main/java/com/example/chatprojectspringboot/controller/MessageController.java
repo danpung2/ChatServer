@@ -1,6 +1,8 @@
 package com.example.chatprojectspringboot.controller;
 
-import com.example.chatprojectspringboot.model.ChatMessage;
+import com.example.chatprojectspringboot.dto.chat.EnterRoomMessageDTO;
+import com.example.chatprojectspringboot.entity.Message;
+import com.example.chatprojectspringboot.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -10,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MessageController {
     private final SimpMessageSendingOperations sendingOperations;
+    private final ChatService chatService;
 
-    @MessageMapping("/api/chat/message")
-    public void enter(ChatMessage message) {
-        if (ChatMessage.MessageType.ENTER.equals(message.getType())) {
-            message.setMessage(message.getSender() + " 님이 입장하였습니다.");
-        }
-        sendingOperations.convertAndSend("/topic/chat/room/"+message.getRoomId(),message);
+    @MessageMapping("/chat/message/enter")
+    public void enter(EnterRoomMessageDTO enterRoomMessageDTO) {
+        Message message = chatService.enterRoom(enterRoomMessageDTO);
+//        sendingOperations.convertAndSend("/topic/chat/room/" + message.getRoomId(), message);
+        sendingOperations.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
     }
 }

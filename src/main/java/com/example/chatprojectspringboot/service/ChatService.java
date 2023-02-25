@@ -1,7 +1,7 @@
 package com.example.chatprojectspringboot.service;
 
-import com.example.chatprojectspringboot.dto.chat.EnterRoomDTO;
-import com.example.chatprojectspringboot.entity.User;
+import com.example.chatprojectspringboot.dto.chat.EnterRoomMessageDTO;
+import com.example.chatprojectspringboot.entity.Message;
 import com.example.chatprojectspringboot.repository.RoomRepository;
 import com.example.chatprojectspringboot.entity.Room;
 import com.example.chatprojectspringboot.repository.UserRepository;
@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Slf4j
@@ -38,23 +37,9 @@ public class ChatService {
         return roomRepository.save(room);
     }
 
-    public EnterRoomDTO enterRoom(int roomId, int userId){
-        return EnterRoomDTO.builder()
-                .roomId(roomId)
-                .user(userRepository.findUserByUserId(userId).get())
-                .build();
-
-//        User dummy = User.builder()
-//                .userId(99)
-//                .nickname("tester")
-//                .email("tester@gmail.com")
-//                .password("qwerty12345")
-//                .createdAt(LocalDateTime.now())
-//                .build();
-//
-//        return EnterRoomDTO.builder()
-//        .roomId(roomId)
-//        .user(dummy)
-//        .build();
+    public Message enterRoom(EnterRoomMessageDTO enterRoomMessageDTO){
+        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId());
     }
+
+
 }

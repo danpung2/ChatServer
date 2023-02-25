@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/chat")
 public class RoomController {
     private final ChatService chatService;
-    // 채팅 리스트 화면
-//    @GetMapping("/room")
-//    public String rooms(Model model) {
-//        return "/chat/room";
-//    }
+
     // 모든 채팅방 목록 반환
     @GetMapping("/room/all")
     public ResponseEntity room() {
@@ -26,10 +22,10 @@ public class RoomController {
         return ResponseEntity.ok(chatService.createRoom(roomName));
     }
     // 채팅방 입장 화면
-    @GetMapping("/room/enter")
-    public ResponseEntity roomDetail(@RequestParam Integer roomId, @RequestParam Integer userId) {
-        return ResponseEntity.ok(chatService.enterRoom(roomId, userId));
-    }
+//    @GetMapping("/room/enter")
+//    public ResponseEntity roomDetail(@RequestParam Integer roomId, @RequestParam Integer userId) {
+//        return ResponseEntity.ok(chatService.enterRoom(roomId, userId));
+//    }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")
     @ResponseBody

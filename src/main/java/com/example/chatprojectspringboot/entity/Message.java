@@ -10,18 +10,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message {
-    public enum MessageType {
-        ENTER, TALK
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="message_id")
     private int messageId;
-
-    @Column(name="message_type")
-    @Enumerated(EnumType.STRING)
-    private MessageType messageType;
 
     @Column(name="room_id")
     private int roomId;
@@ -31,5 +23,10 @@ public class Message {
 
     @Column(name="content")
     private String content;
+
+   public Message setContent(String content){
+       this.content = content;
+       return this;
+   }
 
 }

@@ -1,5 +1,6 @@
 package com.example.chatprojectspringboot.controller;
 
+import com.example.chatprojectspringboot.dto.chat.EnterRoomMessageDTO;
 import com.example.chatprojectspringboot.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,10 @@ public class RoomController {
         return ResponseEntity.ok(chatService.createRoom(roomName));
     }
     // 채팅방 입장 화면
-//    @GetMapping("/room/enter")
-//    public ResponseEntity roomDetail(@RequestParam Integer roomId, @RequestParam Integer userId) {
-//        return ResponseEntity.ok(chatService.enterRoom(roomId, userId));
-//    }
+    @GetMapping("/room/enter")
+    public ResponseEntity roomDetail(@RequestParam Integer roomId, @RequestParam String nickname) {
+        return ResponseEntity.ok(chatService.enterRoom(new EnterRoomMessageDTO(roomId, nickname)));
+    }
     // 특정 채팅방 조회
     @GetMapping("/room/{roomId}")
     @ResponseBody

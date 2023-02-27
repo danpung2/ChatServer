@@ -37,8 +37,8 @@ public class ChatService {
         return roomRepository.save(room);
     }
 
-    public Message enterRoom(EnterRoomMessageDTO enterRoomMessageDTO){
-        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId());
+    public Message enterRoom(EnterRoomMessageDTO enterRoomMessageDTO) {
+        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getNickname());
     }
 
 

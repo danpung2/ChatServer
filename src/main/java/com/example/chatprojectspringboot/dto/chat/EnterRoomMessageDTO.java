@@ -14,13 +14,22 @@ import lombok.NoArgsConstructor;
 public class EnterRoomMessageDTO {
     @NotNull
     private int roomId;
+    private String nickname;
 
-    public Message toEntity(int roomId){
-        return Message.builder()
-                .roomId(roomId)
-                .sender("GUEST")
-                .content(" 님이 입장하였습니다.")
-                .build();
+    public Message toEntity(int roomId, String nickname) {
+        if (nickname == null) {
+            return Message.builder()
+                    .roomId(roomId)
+                    .sender(nickname)
+                    .content(" 님이 입장하였습니다.")
+                    .build();
+        } else {
+            return Message.builder()
+                    .roomId(roomId)
+                    .sender("GUEST")
+                    .content(" 님이 입장하였습니다.")
+                    .build();
+        }
 
     }
 }

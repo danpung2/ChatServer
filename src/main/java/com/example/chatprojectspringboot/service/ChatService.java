@@ -38,7 +38,11 @@ public class ChatService {
     }
 
     public Message enterRoom(EnterRoomMessageDTO enterRoomMessageDTO) {
-        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getNickname());
+        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getRoomName());
+    }
+
+    public boolean isValidRoom(int roomId){
+        return roomRepository.findRoomByRoomId(roomId).isPresent();
     }
 
 

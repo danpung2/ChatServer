@@ -18,6 +18,9 @@ public class Message {
     @Column(name="room_id")
     private int roomId;
 
+    @Column(name="room_name")
+    private String roomName;
+
     @Column(name="sender")
     private String sender;
 

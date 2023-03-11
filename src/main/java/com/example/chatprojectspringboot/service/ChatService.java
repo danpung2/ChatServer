@@ -1,7 +1,9 @@
 package com.example.chatprojectspringboot.service;
 
+import com.example.chatprojectspringboot.dto.chat.ChatMessageDTO;
 import com.example.chatprojectspringboot.dto.chat.EnterRoomMessageDTO;
 import com.example.chatprojectspringboot.entity.Message;
+import com.example.chatprojectspringboot.repository.MessageRepository;
 import com.example.chatprojectspringboot.repository.RoomRepository;
 import com.example.chatprojectspringboot.entity.Room;
 import com.example.chatprojectspringboot.repository.UserRepository;
@@ -16,6 +18,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ChatService {
     private final RoomRepository roomRepository;
+    private final MessageRepository messageRepository;
     private final UserRepository userRepository;
 
     //채팅방 불러오기
@@ -37,8 +40,12 @@ public class ChatService {
         return roomRepository.save(room);
     }
 
-    public Message enterRoom(EnterRoomMessageDTO enterRoomMessageDTO) {
-        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getRoomName());
+    public Message enterMessage(EnterRoomMessageDTO enterRoomMessageDTO) {
+        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getRoomName(), enterRoomMessageDTO.getNickname());
+    }
+
+    public Message sendMessage(ChatMessageDTO chatMessageDTO){
+        return messageRepository.save(chatMessageDTO.toEntity(chatMessageDTO.getRoomId(), chatMessageDTO.getRoomName(), chatMessageDTO.getNickname(), chatMessageDTO.getContent()));
     }
 
     public boolean isValidRoom(int roomId){

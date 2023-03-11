@@ -1,5 +1,6 @@
 package com.example.chatprojectspringboot.controller;
 
+import com.example.chatprojectspringboot.dto.chat.ChatMessageDTO;
 import com.example.chatprojectspringboot.dto.chat.EnterRoomMessageDTO;
 import com.example.chatprojectspringboot.entity.Message;
 import com.example.chatprojectspringboot.service.ChatService;
@@ -16,8 +17,13 @@ public class MessageController {
 
     @MessageMapping("/chat/message/enter")
     public void enter(EnterRoomMessageDTO enterRoomMessageDTO) {
-        Message message = chatService.enterRoom(enterRoomMessageDTO);
-//        sendingOperations.convertAndSend("/topic/chat/room/" + message.getRoomId(), message);
-        sendingOperations.convertAndSend("/sub/chat/room/" + message.getRoomId(), message);
+        Message message = chatService.enterMessage(enterRoomMessageDTO);
+        sendingOperations.convertAndSend("/topic/chat/room/" + message.getRoomId(), message);
+    }
+
+    @MessageMapping("/chat/message")
+    public void send(ChatMessageDTO chatMessageDTO) {
+        Message message = chatService.sendMessage(chatMessageDTO);
+        sendingOperations.convertAndSend("/topic/chat/room/" + message.getRoomId(), message);
     }
 }

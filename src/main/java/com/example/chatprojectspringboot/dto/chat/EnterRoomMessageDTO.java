@@ -16,13 +16,15 @@ public class EnterRoomMessageDTO {
     private int roomId;
     @NotNull
     private String roomName;
+    @NotNull
+    private String nickname;
 
-    public Message toEntity(int roomId, String roomName) {
+    public Message toEntity(int roomId, String roomName, String nickname) {
         return Message.builder()
                 .roomId(roomId)
                 .roomName(roomName)
-                .sender("GUEST")
-                .content(" 님이 입장하였습니다.")
+                .sender("System")
+                .content(nickname + " 님이 입장하였습니다.")
                 .build();
     }
 }

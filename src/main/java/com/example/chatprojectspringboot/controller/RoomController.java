@@ -1,9 +1,15 @@
 package com.example.chatprojectspringboot.controller;
 
+import com.example.chatprojectspringboot.dto.room.CreateRoomDTO;
 import com.example.chatprojectspringboot.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,8 +24,8 @@ public class RoomController {
     }
     // 채팅방 생성
     @PostMapping("/room")
-    public ResponseEntity createRoom(@RequestParam String roomName) {
-        return ResponseEntity.ok(chatService.createRoom(roomName));
+    public ResponseEntity createRoom(@Validated @RequestBody CreateRoomDTO createRoomDTO) {
+        return ResponseEntity.ok(chatService.createRoom(createRoomDTO.getRoomName(), LocalDate.parse(createRoomDTO.getExpiredDate(), DateTimeFormatter.ISO_LOCAL_DATE), LocalTime.parse(createRoomDTO.getExpiredTime(), DateTimeFormatter.ISO_LOCAL_TIME)));
     }
     // 채팅방 입장 화면
     @GetMapping("/room/enter")

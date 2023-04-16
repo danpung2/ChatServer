@@ -1,4 +1,4 @@
-package com.example.chatprojectspringboot.dto.user;
+package com.example.chatprojectspringboot.dto.room;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,11 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO {
+public class CreateRoomDTO {
     @NotBlank
-    private String email;
+    private String roomName;
     @NotBlank
-    private String password;
+    private String expiredDate;
+    @NotBlank
+    private String expiredTime;
 }

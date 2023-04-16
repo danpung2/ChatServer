@@ -21,6 +21,8 @@ repositories {
 dependencies {
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // validation (notnull, notblank, etc)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     // login
     implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

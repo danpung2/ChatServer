@@ -44,9 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        JsonIdPasswordAuthenticationFilter jsonAuthenticationFilter = new JsonIdPasswordAuthenticationFilter(LOGIN_REQUEST_MATCHER);
-//        jsonAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
-
         http
                 .headers().frameOptions().disable()
                 .and()

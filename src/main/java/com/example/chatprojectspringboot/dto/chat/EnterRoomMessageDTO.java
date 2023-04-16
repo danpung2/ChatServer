@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -14,9 +16,9 @@ import lombok.NoArgsConstructor;
 public class EnterRoomMessageDTO {
     @NotNull
     private int roomId;
-    @NotNull
+    @NotBlank
     private String roomName;
-    @NotNull
+    @NotBlank
     private String nickname;
 
     public Message toEntity(int roomId, String roomName, String nickname) {

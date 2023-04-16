@@ -1,17 +1,18 @@
 package com.example.chatprojectspringboot.dto.user;
 
-import com.sun.istack.NotNull;
 import lombok.*;
+
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Builder
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class JoinDTO {
-    @NotNull
+    @NotBlank
     private String nickname;
-    @NotNull
+    @NotBlank
     private String email;
-    @NotNull
+    @NotBlank
     private String password;
 }

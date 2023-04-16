@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Slf4j
@@ -32,16 +34,18 @@ public class ChatService {
     }
 
     //채팅방 생성
-    public Room createRoom(String name) {
+    public Room createRoom(String name, LocalDate expiredDate, LocalTime expiredTime) {
         Room room = Room.builder()
                 .roomName(name)
+                .expiredDate(expiredDate)
+                .expiredTime(expiredTime)
                 .build();
 
         return roomRepository.save(room);
     }
 
     public Message enterMessage(EnterRoomMessageDTO enterRoomMessageDTO) {
-        return enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getRoomName(), enterRoomMessageDTO.getNickname());
+        return messageRepository.save(enterRoomMessageDTO.toEntity(enterRoomMessageDTO.getRoomId(), enterRoomMessageDTO.getRoomName(), enterRoomMessageDTO.getNickname()));
     }
 
     public Message sendMessage(ChatMessageDTO chatMessageDTO){
@@ -49,8 +53,16 @@ public class ChatService {
     }
 
     public boolean isValidRoom(int roomId){
-        return roomRepository.findRoomByRoomId(roomId).isPresent();
-    }
+        if(roomRepository.findRoomByRoomId(roomId).isEmpty()){
+            return false;
+        }
+        Room room = roomRepository.findRoomByRoomId(roomId).orElse(null);
 
+        if(room != null && room.getExpiredDate().isAfter(LocalDate.now()) && room.getExpiredTime().isAfter(LocalTime.now())){
+            return true;
+        }
+
+        return false;
+    }
 
 }

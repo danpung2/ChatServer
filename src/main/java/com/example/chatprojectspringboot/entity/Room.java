@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Entity
@@ -24,12 +26,14 @@ public class Room {
     @Column(name="room_name")
     private String roomName;
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-//    private List<User> user;
-
     @JsonFormat(pattern="yyyy.MM.dd/HH:mm/E")
     @Column(name="created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Column(name="expired_date")
+    private LocalDate expiredDate;
+
+    @Column(name="expired_time")
+    private LocalTime expiredTime;
 }

@@ -27,7 +27,6 @@ public class UserService {
         return userRepository.save(getUserById(userId).setRefreshToken(refreshToken)).setPassword("").setRefreshToken("");
     }
 
-// github.dev 테스트
     public User getUserById(int userId){
         return userRepository.findById(userId).get();
     }
